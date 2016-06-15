@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MiniDressModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OrderItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="bigint" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="OrderId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GuestName" Type="nvarchar" MaxLength="255" />
+          <Property Name="GuestEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="GuestPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="GuestIpAddress" Type="nvarchar" MaxLength="15" />
+          <Property Name="ShippingAddr1" Type="nvarchar" MaxLength="500" />
+          <Property Name="ShippingAddr2" Type="nvarchar" MaxLength="500" />
+          <Property Name="ShippingCity" Type="nvarchar" MaxLength="255" />
+          <Property Name="ShippingState" Type="nvarchar" MaxLength="255" />
+          <Property Name="ShippingPostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShippingCountry" Type="nvarchar" MaxLength="255" />
+          <Property Name="ShippingCost" Type="money" />
+          <Property Name="SubTotal" Type="money" />
+          <Property Name="CreatedTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Discount" Type="float" />
+        </EntityType>
+        <Association Name="FK__OrderItem__Produ__619B8048">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_ToOrders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_CreateOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="InOut" />
+          <Parameter Name="GuestName" Type="nvarchar" Mode="In" />
+          <Parameter Name="GuestEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="GuestPhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="GuestIpAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingAddr1" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingAddr2" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingCity" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingState" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingPostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingCountry" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_GetProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_InsertOrderItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="InOut" />
+          <Parameter Name="ProductId" Type="bigint" Mode="In" />
+          <Parameter Name="Quantity" Type="int" Mode="In" />
+          <Parameter Name="OrderId" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="MiniDressModelStoreContainer">
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__OrderItem__Produ__619B8048" Association="Self.FK__OrderItem__Produ__619B8048">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_ToOrders" Association="Self.FK_OrderItems_ToOrders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MiniDressModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int64" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="OrderId" Type="Int64" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderItems_ToOrders" FromRole="OrderItems" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="MiniDressModel.FK__OrderItem__Produ__619B8048" FromRole="OrderItem" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuestName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GuestEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GuestPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GuestIpAddress" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingAddr1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingAddr2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingCity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingState" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingPostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingCountry" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingCost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SubTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItems_ToOrders" FromRole="Orders" ToRole="OrderItems" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Double" />
+          <NavigationProperty Name="OrderItems" Relationship="MiniDressModel.FK__OrderItem__Produ__619B8048" FromRole="Product" ToRole="OrderItem" />
+        </EntityType>
+        <Association Name="FK_OrderItems_ToOrders">
+          <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderItems" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MiniDressEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <AssociationSet Name="FK_OrderItems_ToOrders" Association="Self.FK_OrderItems_ToOrders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <FunctionImport Name="usp_CreateOrder">
+            <Parameter Name="Id" Mode="InOut" Type="Int64" />
+            <Parameter Name="GuestName" Mode="In" Type="String" />
+            <Parameter Name="GuestEmail" Mode="In" Type="String" />
+            <Parameter Name="GuestPhone" Mode="In" Type="String" />
+            <Parameter Name="GuestIpAddress" Mode="In" Type="String" />
+            <Parameter Name="ShippingAddr1" Mode="In" Type="String" />
+            <Parameter Name="ShippingAddr2" Mode="In" Type="String" />
+            <Parameter Name="ShippingCity" Mode="In" Type="String" />
+            <Parameter Name="ShippingState" Mode="In" Type="String" />
+            <Parameter Name="ShippingPostalCode" Mode="In" Type="String" />
+            <Parameter Name="ShippingCountry" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetProducts" ReturnType="Collection(MiniDressModel.usp_GetProducts_Result)" />
+          <FunctionImport Name="usp_InsertOrderItem">
+            <Parameter Name="Id" Mode="InOut" Type="Int32" />
+            <Parameter Name="ProductId" Mode="In" Type="Int64" />
+            <Parameter Name="Quantity" Mode="In" Type="Int32" />
+            <Parameter Name="OrderId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <AssociationSet Name="FK__OrderItem__Produ__619B8048" Association="MiniDressModel.FK__OrderItem__Produ__619B8048">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="usp_GetProducts_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="19" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="Double" Name="Discount" Nullable="true" />
+        </ComplexType>
+        <Association Name="FK__OrderItem__Produ__619B8048">
+          <End Type="MiniDressModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="MiniDressModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MiniDressModelStoreContainer" CdmEntityContainer="MiniDressEntities">
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="MiniDressModel.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="MiniDressModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GuestName" ColumnName="GuestName" />
+                <ScalarProperty Name="GuestEmail" ColumnName="GuestEmail" />
+                <ScalarProperty Name="GuestPhone" ColumnName="GuestPhone" />
+                <ScalarProperty Name="GuestIpAddress" ColumnName="GuestIpAddress" />
+                <ScalarProperty Name="ShippingAddr1" ColumnName="ShippingAddr1" />
+                <ScalarProperty Name="ShippingAddr2" ColumnName="ShippingAddr2" />
+                <ScalarProperty Name="ShippingCity" ColumnName="ShippingCity" />
+                <ScalarProperty Name="ShippingState" ColumnName="ShippingState" />
+                <ScalarProperty Name="ShippingPostalCode" ColumnName="ShippingPostalCode" />
+                <ScalarProperty Name="ShippingCountry" ColumnName="ShippingCountry" />
+                <ScalarProperty Name="ShippingCost" ColumnName="ShippingCost" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="MiniDressModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_CreateOrder" FunctionName="MiniDressModel.Store.usp_CreateOrder" />
+          <FunctionImportMapping FunctionImportName="usp_GetProducts" FunctionName="MiniDressModel.Store.usp_GetProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniDressModel.usp_GetProducts_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_InsertOrderItem" FunctionName="MiniDressModel.Store.usp_InsertOrderItem" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

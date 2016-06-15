@@ -1,0 +1,195 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<!-- Header -->
+<div class="container-fluid header">
+    <div class="row">
+        <div class="header-image">
+            <div class="header-container">
+                <div class="header-message">SPECIAL WEEKEND SALE!
+                <br/>30% OFF SELECTED STYLES</div>
+                <div><a href="#"><button class="header-button">SHOP NOW</button></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden specials -->
+<div class="container specials">
+    <div class="featured">SPECIALS</div>
+    <div class="row featured-products">
+        <hr/>
+        <div class="col-lg-6">
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/HEEL1.png"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/HEEL2.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 arrival">
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/PANT1.png"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/SHIRT2.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row featured-products">
+        <div class="col-lg-6">
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/HEEL1.png"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/HEEL2.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 arrival">
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/PANT1.png"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/SHIRT2.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured -->
+<div class="container">
+    <div class="featured">FEATURED</div>
+    <div class="row featured-products">
+        <hr/>
+        <div class="col-lg-6">
+            <div class="col-md-6" ng-repeat="product in products">                
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal" >                    
+                        <img ng-click="getProduct(product.Id)" ng-src="{{product.Image}}">                    
+                </div>
+            </div>            
+        </div>
+        <div class="col-lg-6 arrival">
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/SHIRT1.png"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/jeans1.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row featured-products">
+        <div class="col-lg-6">
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/HEEL1.png"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/HEEL2.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 arrival">
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/PANT1.png"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="featured-box" data-toggle="modal" data-target="#HEEL1-modal">
+                    <img src="~/images/SHIRT2.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Product modal -->
+<div class="modal fade" id="HEEL1-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{product.Name}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4 center-parent">
+                            <div class="center-child">{{product.Description}}</div>                            
+                        </div>
+                        <div class="col-md-4">
+                            <div><img src="{{product.Image}}" /></div>
+                        </div>
+                        <div class="col-md-4">        
+                            <div>Price: $ {{product.Price}}</div>            
+                            <div><button class="add-to-cart" data-toggle="modal" data-target="#HEEL2-modal">ADD TO CART</button></div>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>ce
+    </div>
+</div>
+
+<!-- Shopping Cart modal-->
+  <div class="modal fade cart" id="HEEL2-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Shopping Cart</h4>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row" ng-repeat="product in products">
+                    <div class="col-md-2" >
+                        <div><img ng-src="{{product.Image}}" height="70px" width="70px"></div>  
+                    </div>
+                    <div class="col-md-4">
+                        <div>{{product.Name}}</div>
+                    </div>
+                    <div class="col-md-2">
+                        <div><a href="#"><button class="header-button">-</button></a><span id="product-qty">   1   </span><a href="#"><button class="header-button">+</button></a><!--<a href="#"><button class="header-button">Qty</button></a></div>--></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="product-item-sum">$ {{product.Price}}</div>
+                    </div>
+                </div>      
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-2">Total</div>
+                    <div class="col-md-2">$ 55</div>    
+            </div> 
+        </div>
+        <div class="modal-footer">
+          <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <button type="button">BUY NOW</button>
+        </div>
+      </div>
+    </div>
+  </div>

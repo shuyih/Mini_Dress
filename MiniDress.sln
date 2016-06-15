@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FBDCC363-92C5-4E96-B1BA-64AC2F36243A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{195E282D-AEE3-4DA3-9D14-1BDE230D7A30}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MiniDress", "src\MiniDress\MiniDress.xproj", "{DB93F365-EE15-4318-AEA6-3E0A4C46EE45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniDress.DataModel", "DataModel\MiniDress.DataModel.csproj", "{238F02D5-A767-4FA4-9A07-3EFDE9EB94CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB93F365-EE15-4318-AEA6-3E0A4C46EE45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB93F365-EE15-4318-AEA6-3E0A4C46EE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB93F365-EE15-4318-AEA6-3E0A4C46EE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB93F365-EE15-4318-AEA6-3E0A4C46EE45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{238F02D5-A767-4FA4-9A07-3EFDE9EB94CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{238F02D5-A767-4FA4-9A07-3EFDE9EB94CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{238F02D5-A767-4FA4-9A07-3EFDE9EB94CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{238F02D5-A767-4FA4-9A07-3EFDE9EB94CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB93F365-EE15-4318-AEA6-3E0A4C46EE45} = {FBDCC363-92C5-4E96-B1BA-64AC2F36243A}
+		{238F02D5-A767-4FA4-9A07-3EFDE9EB94CE} = {FBDCC363-92C5-4E96-B1BA-64AC2F36243A}
+	EndGlobalSection
+EndGlobal
