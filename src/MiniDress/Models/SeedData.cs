@@ -29,8 +29,7 @@ namespace MiniDress.Models
                          Price = 7.99M,
                          Image = "",
                          Discount = 3,
-                         OrderItems = null
-                         
+                         OrderItems = null                         
                      },
 
                      new Product
@@ -42,7 +41,6 @@ namespace MiniDress.Models
                          Image = "",
                          Discount = 3,
                          OrderItems = null
-
                      },
 
                      new Product
@@ -54,7 +52,6 @@ namespace MiniDress.Models
                          Image = "",
                          Discount = 3,
                          OrderItems = null
-
                      },
 
                    new Product
