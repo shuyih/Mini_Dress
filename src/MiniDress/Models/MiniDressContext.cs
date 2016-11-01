@@ -6,6 +6,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+using Microsoft.Data.Entity.Infrastructure;
 
 namespace MiniDress.Models
 {
@@ -14,6 +16,10 @@ namespace MiniDress.Models
         public MiniDressContext()
         {
             Database.EnsureCreated();
+        }
+
+        public MiniDressContext(DbContextOptions options) : base(options)
+        {
         }
 
         public DbSet<Order> Orders { get; set; }
